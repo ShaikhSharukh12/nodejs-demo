@@ -13,7 +13,7 @@ pipeline {
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t sharukh/nodeapp:$BUILD_NUMBER .'
+                sh 'docker build -t sharukh/nodeapp:$BUILD_NUMBER . --no-cache'
             }
         }
         stage('login to dockerhub') {
@@ -24,18 +24,17 @@ pipeline {
         stage('push image') {
             steps{
                 sh 'docker tag sharukh/nodeapp:$BUILD_NUMBER shaikhsharukh/nodejsapp:$BUILD_NUMBER'
-                sh 'docker push shaikhsharukh/nodejsapp:$BUILD_NUMBERvdfghf'
+                sh 'docker push shaikhsharukh/nodejsapp:$BUILD_NUMBER'
+                sh 'docker rmi -f  $(docker imagea -q)'
             }
         }
 }
 post {
         failure {
-            emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
-                    to: "${EMAIL_TO}", 
-                    subject: 'Build failed in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER'
+            sh 'echo "sending email"'
         }
         success { 
-            sh 'echo success'
+            sh 'echo "deploying"'
         }
         always {
             sh 'docker logout'

@@ -25,7 +25,7 @@ pipeline {
             steps{
                 sh 'docker tag sharukh/nodeapp:$BUILD_NUMBER shaikhsharukh/nodejsapp:$BUILD_NUMBER'
                 sh 'docker push shaikhsharukh/nodejsapp:$BUILD_NUMBER'
-                sh 'docker rmi -f  $(docker imagea -q)'
+                sh 'docker rmi -f  $(docker images -q)'
             }
         }
 }

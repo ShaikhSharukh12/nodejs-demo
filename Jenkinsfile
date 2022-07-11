@@ -1,6 +1,7 @@
 pipeline {
     agent {label "java_build_node"}
     environment {
+    EMAIL_TO = 'realshad07@gmail.com'
     DOCKERHUB_CREDENTIALS = credentials('docker-hub-sharukh')
     }
     stages { 
@@ -28,8 +29,11 @@ pipeline {
         }
 }
 post {
-        failure { 
-            sh 'echo failed'
+        failure {
+            emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
+                    to: "${EMAIL_TO}", 
+                    subject: 'Build failed in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER'
+        }
         }
         success { 
             sh 'echo success'

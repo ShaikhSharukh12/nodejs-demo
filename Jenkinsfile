@@ -28,6 +28,12 @@ pipeline {
         }
 }
 post {
+        failure { 
+            sh 'echo failed'
+        }
+        success { 
+            sh 'echo success'
+        }
         always {
             sh 'docker logout'
         }

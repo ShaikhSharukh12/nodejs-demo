@@ -23,7 +23,7 @@ pipeline {
         stage('push image') {
             steps{
                 sh 'docker tag sharukh/nodeapp:$BUILD_NUMBER shaikhsharukh/nodejsapp:$BUILD_NUMBER'
-                sh 'docker push shaikhsharukh/nodejsapp:$BUILD_NUMBER'
+                sh 'docker push shaikhsharukh/nodejsapp:$BUILD_NUMBERvdfghf'
             }
         }
 }

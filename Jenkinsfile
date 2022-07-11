@@ -34,7 +34,6 @@ post {
                     to: "${EMAIL_TO}", 
                     subject: 'Build failed in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER'
         }
-        }
         success { 
             sh 'echo success'
         }

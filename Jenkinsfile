@@ -31,7 +31,7 @@ post {
         always {
             sh 'docker logout'
             sh 'echo "post build"'
-            sh 'echo "do"'
+            
         }
     }
 }

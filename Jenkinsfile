@@ -31,6 +31,8 @@ post {
         always {
             sh 'docker logout'
             sh 'echo "post build"'
+            sh 'docker pull shaikhsharukh/nodejsapp:$BUILD_NUMBER'
+            sh 'docker run -d -p 80:3000 --name new shaikhsharukh/nodejsapp:$BUILD_NUMBER'
             
         }
     }

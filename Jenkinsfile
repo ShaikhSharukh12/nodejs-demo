@@ -36,7 +36,8 @@ post {
         success { 
             sh 'echo "deploying"'
             sh 'docker pull shaikhsharukh/nodejsapp:$BUILD_NUMBER'
-            sh 'docker run -d -p 3000:3000 --name new-node shaikhsharukh/nodejsapp:$BUILD_NUMBER /bin/bash' 
+            sh 'docker run -d -p 80:3000 --name new shaikhsharukh/nodejsapp:$BUILD_NUMBER'
+' 
         }
         always {
             sh 'docker logout'

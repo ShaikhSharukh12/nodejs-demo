@@ -31,7 +31,7 @@ pipeline {
 }
 post {
         failure {
-            sh 'echo "sending email"'
+            sh 'echo "sending. email"'
         }
         success { 
             sh 'echo "deploying"'

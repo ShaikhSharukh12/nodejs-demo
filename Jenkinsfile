@@ -34,7 +34,7 @@ post {
             sh 'echo "sending email"'
         }
         success { 
-            sh 'echo "deploying"'
+            sh 'echo "deploying."'
             sh 'docker pull shaikhsharukh/nodejsapp:$BUILD_NUMBER'
             sh 'docker run -d --name new-node shaikhsharukh/nodejsapp:$BUILD_NUMBER /bin/bash' 
         }
